@@ -66,5 +66,6 @@ Known limitations
 1) URLs that are added to the DOM via JavaScript are not rewritten. This means that the embedded PDF viewer, for
   example, doesn't work when the publisher site is down. This is a limitation of the PHP Simple HTML DOM Parser 
   library.
+2) Needs testing, and probably fixing, with rewriting relative URLs.
 
 
