@@ -60,4 +60,11 @@ the SLG version of the URL, your LOCKSS box will return preserved content to the
 the publisher's website goes down. When the publisher's website is working normally, users won't notice
 anything other than the longer URLs.
 
+Known limitations
+-----------------
+
+1) URLs that are added to the DOM via JavaScript are not rewritten. This means that the embedded PDF viewer, for
+  example, doesn't work when the publisher site is down. This is a limitation of the PHP Simple HTML DOM Parser 
+  library.
+
 
