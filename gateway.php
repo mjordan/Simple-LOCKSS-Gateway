@@ -18,12 +18,11 @@ $this_script = 'http://lib-general.lib.sfu.ca/slg/gateway.php?url=';
 
 // You should not have to change anything below this line.
 
-// List of element => attribute pairs to rewrite. 
+// List of element => attribute pairs to rewrite. <script> tags are handled by a special case.
 $rewrite_elements = array(
   'a' => 'href',
   'img' => 'src',
   'link' => 'href',
-  'script' => 'src',
   'object' => 'data',
 );
 
@@ -35,8 +34,8 @@ if (empty($url)) {
 }
 
 // Define a whitelist of hosts that are allowed to be proxied through this script.
-$url_host = parse_url($url, PHP_URL_HOST);
-if (!in_array($url_host, $allowed_hosts)) {
+$url_parts = parse_url($url);
+if (!in_array($url_parts['host'], $allowed_hosts)) {
   echo '<html><body>Error: Unregistered URL</body></html>';
   exit;
 }
@@ -89,6 +88,14 @@ if ($info['http_code'] == '404') {
           $e->$attribute = $this_script . $e->$attribute;
         }
       }
+    }
+
+    // PHP Simple HTML DOM Parser library doesn't find <a hrefs> or any other attriubutes in JavaScript, 
+    // so we need to implement a special case where we rewrite these URLs manually. 
+    foreach($proxied_html->find('script') as $script) {
+      $host_pattern = '/(' . $url_parts['scheme'] . '\:\/\/' . $url_parts['host'] . ')/';
+      $replacement_host_pattern = "$this_script$1";
+      $script->outertext = preg_replace($host_pattern, $replacement_host_pattern, $script->outertext);
     }
 
     // Send the rewritten HTML to the client.
