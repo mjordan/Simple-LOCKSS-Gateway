@@ -10,11 +10,14 @@
 **********************************************************************************************/
 
 // Change $lockss_box, $allowed_hosts, and $this_script as described in README.txt.
+
+// Your LOCKSS box's hostname and Content Proxy port.
 $lockss_box = 'cpln.lib.sfu.ca:9091';
 // Whitelist of hosts to allow in rewritten URLs. 
 $allowed_hosts = array('pkp.sfu.ca', 'lib-drupal2.lib.sfu.ca', 'lib-general.lib.sfu.ca');
 // The URL of this script, which is prepended to proxied URLs below.
 $this_script = 'http://lib-general.lib.sfu.ca/slg/gateway.php?url=';
+// File to log stuff to, if you invoke log_var() while troubleshooting, etc. 
 $log_var_file = '/tmp/slg_log.txt';
 
 // You should not have to change anything below this line.
