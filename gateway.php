@@ -2,7 +2,7 @@
 
 /*********************************************************************************************
 * Simple LOCKSS Gateway, a script that acts as a proxy between end users and a LOCKSS box.
-* Last modified 2011-01-12 mjordan@sfu.ca.
+* Last modified 2011-03-25 mjordan@sfu.ca.
 * 
 * Requires PHP's cURL extension and the PHP Simple HTML DOM Parser library 
 * (http://simplehtmldom.sourceforge.net/). Licensed under The MIT License; see MIT-LICENSE.txt 
@@ -12,7 +12,7 @@
 // Change $lockss_box, $allowed_hosts, and $this_script as described in README.txt.
 $lockss_box = 'cpln.lib.sfu.ca:9091';
 // Whitelist of hosts to allow in rewritten URLs. 
-$allowed_hosts = array('pkp.sfu.ca', 'lib-drupal2.lib.sfu.ca');
+$allowed_hosts = array('pkp.sfu.ca', 'lib-drupal2.lib.sfu.ca', 'lib-general.lib.sfu.ca');
 // The URL of this script, which is prepended to proxied URLs below.
 $this_script = 'http://lib-general.lib.sfu.ca/slg/gateway.php?url=';
 $log_var_file = '/tmp/slg_log.txt';
@@ -49,7 +49,7 @@ curl_exec($check);
 $check_info = curl_getinfo($check);
 curl_close($check);
 if ($check_info['http_code'] == '200') {
-  header('Location: ' . $url);
+  header('Location: ' . $url, TRUE, 301);
   exit;
 }
 
@@ -134,7 +134,7 @@ function log_var($data, $label = NULL) {
   }
   $out .= "\n";
 
-  if (file_put_contents('/tmp/lockss.log', $out, FILE_APPEND) === FALSE) {
+  if (file_put_contents($log_var_file, $out, FILE_APPEND) === FALSE) {
     return FALSE;
   }
 }
