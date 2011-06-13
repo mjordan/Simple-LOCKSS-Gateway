@@ -2,7 +2,7 @@
 
 /*********************************************************************************************
 * Simple LOCKSS Gateway, a script that acts as a proxy between end users and a LOCKSS box.
-* Last modified 2011-03-25 mjordan@sfu.ca.
+* Last modified 2011-06-13 mjordan@sfu.ca.
 * 
 * Requires PHP's cURL extension and the PHP Simple HTML DOM Parser library 
 * (http://simplehtmldom.sourceforge.net/). Licensed under The MIT License; see MIT-LICENSE.txt 
