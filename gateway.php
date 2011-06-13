@@ -44,9 +44,8 @@ if (!in_array($url_parts['host'], $allowed_hosts)) {
   exit;
 }
 
-// Check destination, and if it returns a 200,  redirect the user to the destination. 
+// Check destination, and if it returns a 200, redirect the user to the destination. 
 // If it doesn't, continue with the code below.
-// @todo: header() doesn't seem to be working....
 $check = curl_init($url);
 curl_exec($check);
 $check_info = curl_getinfo($check);
