@@ -7,13 +7,15 @@ to Open Access resources that are preserved in LOCKSS boxes, since it does not r
 (or even support) authentication mechanisms, unlike Ezproxy or other dedicated remote-access
 solutions.
 
-The Simple LOCKSS Gateway rewrites URLs in the preserved content's HTML such that once a
-user gains access to a resource via the Gateway, all links to other HTML pages on the
-resource's web server (or in fact to all pages in the Gateway's host whitelist) are prepended 
-with the Gateway URL. Only URLs pointing to hosts in the whitelist are rewritten in this way --
-links to external sites are not modified -- and URLs that do not point to a whitelisted host
-generate an error message. Therefore, the Simple LOCKSS Gateway cannot act as an open proxy 
-to arbitrary URLs.
+When a user requests a URL through the the Simple LOCKSS gatewayi, it polls the origin URL to see 
+if the web server responds. If the remote server does respond, the user is redirected to the URL. 
+If it doesn't, the SLG uses the copy of the content that is supplied by the LOCKSS proxy. In addition, 
+it rewrites URLs in the preserved content's HTML such that once a user gains access to a resource via 
+the Gateway, all links to other HTML pages on the resource's web server (or in fact to all pages in the 
+Gateway's host whitelist) are prepended with the Gateway URL. Only URLs pointing to hosts in the 
+whitelist are rewritten in this way -- links to external sites are not modified -- and URLs that do 
+not point to a whitelisted host generate an error message. Therefore, the Simple LOCKSS Gateway cannot 
+act as an open proxy to arbitrary URLs.
 
 
 Installing and configuring the SLG
@@ -30,8 +32,8 @@ server's IP address to the Allow Access list, and then click on the Update butto
 Once you have the SLG installed, you will need to define the following variables in the gateway.php
 script:
 
-1) The URL and proxy port number of your LOCKSS box. The port is the one indicated under Content Access Options/
-  Content Server Options in your LOCKSS box admin interface.
+1) The URL and proxy port number of your LOCKSS box. The port is the one indicated under Content Access 
+  Options/Content Server Options in your LOCKSS box admin interface.
 
   $lockss_box = 'lockssbox.yourlib.net:9091'; 
 
@@ -63,6 +65,7 @@ anything other than the longer URLs.
 Known limitations
 -----------------
 
-1) Needs testing, and probably fixing, with rewriting relative URLs.
+1) URLs written using JavaScript don't work consistenly. The PHP Simple HTML DOM Parser doesn't
+   rewrite JavaScript output.
 
 
