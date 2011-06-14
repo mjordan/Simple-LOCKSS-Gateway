@@ -12,9 +12,9 @@
 // Change $lockss_box, $allowed_hosts, and $this_script as described in README.txt.
 
 // Your LOCKSS box's hostname and Content Proxy port.
-$lockss_box = 'cpln.lib.sfu.ca:9091';
+$lockss_box = 'cpln.lib.sfu.ca:8080';
 // Whitelist of hosts to allow in rewritten URLs. 
-$allowed_hosts = array('pkp.sfu.ca', 'lib-drupal2.lib.sfu.ca', 'lib-general.lib.sfu.ca');
+$allowed_hosts = array('pkp.sfu.ca', 'lib-general.lib.sfu.ca');
 // The URL of this script, which is prepended to proxied URLs below.
 $this_script = 'http://lib-general.lib.sfu.ca/slg/gateway.php?url=';
 // File to log stuff to, if you invoke log_var() while troubleshooting, etc. 
@@ -121,7 +121,6 @@ if ($info['http_code'] == '404') {
 
 /**
  * Log any variable to a file. Adapted from the Drupal devel module's dd() function.
- * Set $utf8 to FALSE if you want incoming text to not be converted.
  */
 function log_var($data, $label = NULL) {
   global $log_var_file;
