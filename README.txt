@@ -7,7 +7,7 @@ to Open Access resources that are preserved in LOCKSS boxes, since it does not r
 (or even support) authentication mechanisms, unlike Ezproxy or other dedicated remote-access
 solutions.
 
-When a user requests a URL through the the Simple LOCKSS gatewayi, it polls the origin URL to see 
+When a user requests a URL through the the Simple LOCKSS gateway, it polls the origin URL to see 
 if the web server responds. If the remote server does respond, the user is redirected to the URL. 
 If it doesn't, the SLG uses the copy of the content that is supplied by the LOCKSS proxy. In addition, 
 it rewrites URLs in the preserved content's HTML such that once a user gains access to a resource via 
