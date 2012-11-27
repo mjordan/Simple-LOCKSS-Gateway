@@ -32,18 +32,15 @@ server's IP address to the Allow Access list, and then click on the Update butto
 Once you have the SLG installed, you will need to define the following variables in the gateway.php
 script:
 
-1) The URL and proxy port number of your LOCKSS box. The port is the one indicated under Content Access 
-  Options/Content Server Options in your LOCKSS box admin interface.
+1. The URL and proxy port number of your LOCKSS box. The port is the one indicated under Content Access Options/Content Server Options in your LOCKSS box admin interface.
 
   $lockss_box = 'lockssbox.yourlib.net:9091'; 
 
-2) The list of hostnames that contain content preserved in your LOCKSS box. This list should contain the
-  hostnames of all the servers that contain content you want accessed through the gateway.
+2. The list of hostnames that contain content preserved in your LOCKSS box. This list should contain the hostnames of all the servers that contain content you want accessed through the gateway.
 
   $allowed_hosts = array('journals.yourlib.net', 'journals.otherlib.net'); 
 
-3) The URL of the SLG script on your server. Be sure to include the '?url=' at the end of the URL,
-  as illustrated below.
+3. The URL of the SLG script on your server. Be sure to include the '?url=' at the end of the URL, as illustrated below.
 
   $this_script = 'http://yourwebsite.yourlib.net/pathto/gateway.php?url='; 
 
@@ -65,7 +62,6 @@ anything other than the longer URLs.
 Known limitations
 -----------------
 
-1) URLs written using JavaScript don't work consistenly. The PHP Simple HTML DOM Parser doesn't
-   rewrite JavaScript output.
+1. URLs written using JavaScript don't work consistenly. The PHP Simple HTML DOM Parser doesn't rewrite JavaScript output.
 
 
